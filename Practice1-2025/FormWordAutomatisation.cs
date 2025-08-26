@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Practice1_2025
 {
-    public partial class WordAutomatisation : Form
+    public partial class FormWordAutomatisation : Form
     {
-        public WordAutomatisation()
+        public FormWordAutomatisation()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormWordAutomatisation_Load(object sender, EventArgs e)
         {
 
         }
@@ -28,6 +28,16 @@ namespace Practice1_2025
         }
 
         private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCheckerRegalies_Click(object sender, EventArgs e)
         {
 
         }

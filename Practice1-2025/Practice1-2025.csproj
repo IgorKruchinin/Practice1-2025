@@ -46,19 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WordAutomatisation.cs">
+    <Compile Include="FormWordAutomatisation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WordAutomatisation.Designer.cs">
-      <DependentUpon>WordAutomatisation.cs</DependentUpon>
+    <Compile Include="FormWordAutomatisation.Designer.cs">
+      <DependentUpon>FormWordAutomatisation.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="WordAutomatisation.aa.resx">
-      <DependentUpon>WordAutomatisation.cs</DependentUpon>
+    <EmbeddedResource Include="FormWordAutomatisation.aa.resx">
+      <DependentUpon>FormWordAutomatisation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WordAutomatisation.resx">
-      <DependentUpon>WordAutomatisation.cs</DependentUpon>
+    <EmbeddedResource Include="FormWordAutomatisation.resx">
+      <DependentUpon>FormWordAutomatisation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

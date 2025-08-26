@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Practice1_2025
@@ -16,7 +13,7 @@ namespace Practice1_2025
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WordAutomatisation());
+            Application.Run(new FormWordAutomatisation());
         }
     }
 }
