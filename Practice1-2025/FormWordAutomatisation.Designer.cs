@@ -288,6 +288,7 @@
             this.btnPreview.TabIndex = 26;
             this.btnPreview.Text = "Предпросмотр";
             this.btnPreview.UseVisualStyleBackColor = true;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // fldCity
             // 

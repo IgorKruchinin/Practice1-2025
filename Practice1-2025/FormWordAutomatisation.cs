@@ -180,7 +180,7 @@ namespace Practice1_2025
             MessageBox.Show("Настройки сохранены!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
+        private void createWordDocument(string filename)
         {
             updateParametersFromControls();
 
@@ -311,7 +311,7 @@ namespace Practice1_2025
                 para.Range.InsertParagraphAfter();
 
                 // Сохраняем документ
-                string docPath = Path.Combine(Application.StartupPath, "TitlePage.docx");
+                string docPath = Path.Combine(Application.StartupPath, filename);
                 wordDoc.SaveAs2(docPath);
                 wordDoc.Close();
                 wordApp.Quit();
@@ -324,7 +324,45 @@ namespace Practice1_2025
                 if (wordDoc != null) wordDoc.Close();
                 if (wordApp != null) wordApp.Quit();
             }
+
         }
+
+        private void showPreviewInWord(string tempFilePath)
+        {
+            Word.Application wordApp = null;
+            Word.Document wordDoc = null;
+            try {
+                wordApp = new Word.Application();
+                wordDoc = wordApp.Documents.Add();
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                {
+                    FileName = tempFilePath,
+                    UseShellExecute = true
+                });
+
+                MessageBox.Show($"Документ открыт в Word.\nФайл: {tempFilePath}",
+                    "Предварительный просмотр", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при создании или открытии документа: " + ex.Message,
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                wordDoc?.Close();
+                wordApp?.Quit();
+    }
+}
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            createWordDocument("titlePage.docx");
+        }
+
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            createWordDocument("preview.docx");
+            showPreviewInWord("preview.docx");
+        }
+
         private void FormWordAutomatisation_Load(object sender, EventArgs e)
         {
 
