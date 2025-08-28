@@ -144,22 +144,22 @@ namespace Practice1_2025
             switch (workType)
             {
                 case "Лабораторная работа":
-                    workType = "Лабораторной работе";
+                    workType = "по Лабораторной работе";
                     break;
                 case "Практическая работа":
-                    workType = "Практической работе";
+                    workType = "по Практической работе";
                     break;
                 case "Индивидуальное задание":
-                    workType = "Индивидуальному заданию";
+                    workType = "по Индивидуальному заданию";
                     break;
                 case "Учебная практика":
-                    workType = "Учебной практике";
+                    workType = "по Учебной практике";
                     break;
                 case "Производственная практика":
-                    workType = "Производственной практике";
+                    workType = "по Производственной практике";
                     break;
                 case "Преддипломная практика":
-                    workType = "Преддипломной практике";
+                    workType = "по Преддипломной практике";
                     break;
                 default:
                     workType = null;
@@ -354,6 +354,7 @@ namespace Practice1_2025
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            updateParametersFromControls();
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
                 sfd.Title = "Сохранить титульный лист";
@@ -381,7 +382,7 @@ namespace Practice1_2025
                     }
                 }
 
-                // === Создаём документ Word ===
+                // Создаём документ Word
                 Word.Application wordApp = null;
                 Word.Document wordDoc = null;
 
@@ -413,6 +414,7 @@ namespace Practice1_2025
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
+            updateParametersFromControls();
             Word.Application wordApp = null;
             Word.Document wordDoc = null;
             string tempFilePath = Path.Combine(Path.GetTempPath(), "Preview_TitlePage.docx");

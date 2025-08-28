@@ -431,7 +431,7 @@
             this.Controls.Add(this.fldWorkName);
             this.Controls.Add(this.lblWorkName);
             this.Name = "FormWordAutomatisation";
-            this.Text = "Выполнил: Кручинин И.Н.; Номер варианта: 6; Дата выполнения: 22.08.2025";
+            this.Text = "Кручинин И.Н.; Номер варианта: 6";
             this.Load += new System.EventHandler(this.FormWordAutomatisation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.fldYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fldWorkNumber)).EndInit();
