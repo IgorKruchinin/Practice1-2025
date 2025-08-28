@@ -207,6 +207,7 @@
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "Сохранить";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCreate
             // 
@@ -216,6 +217,7 @@
             this.btnCreate.TabIndex = 16;
             this.btnCreate.Text = "Создать";
             this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // fldDocumentType
             // 
