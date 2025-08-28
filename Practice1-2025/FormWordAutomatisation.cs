@@ -175,149 +175,156 @@ namespace Practice1_2025
             MessageBox.Show("Настройки сохранены!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void fillTitleDocument(Word.Document wordDoc, string[] parameters) 
+        private void fillTitleDocument(Word.Document doc, string[] parameters)
         {
-            updateParametersFromControls();
+            object oMissing = System.Reflection.Missing.Value;
+            object oEndOfDoc = "\\endofdoc";
 
-            try
+            // Основная таблица: 10 на 1
+            Word.Table mainTable = doc.Content.Tables.Add(
+                doc.Bookmarks.get_Item(ref oEndOfDoc).Range,
+                10, 1);
+
+            mainTable.Borders.Enable = 0; // Невидимые границы
+            mainTable.PreferredWidth = 100;
+            mainTable.PreferredWidthType = Word.WdPreferredWidthType.wdPreferredWidthPercent;
+
+            Word.Cell cell;
+            Word.Range cellRange;
+            Word.Paragraph para;
+            int row = 1;
+
+            // Установим шрифт по умолчанию
+            doc.Content.Font.Name = "Times New Roman";
+            doc.Content.Font.Size = 14;
+
+            // 1. Министерство
+            cell = mainTable.Cell(row, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = parameters[0];
+
+            // 2. Регалии вуза
+            cell = mainTable.Cell(row, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = parameters[1];
+
+            // 3. Университет
+            cell = mainTable.Cell(row++, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = parameters[2];
+
+            // 4. Институт
+            cell = mainTable.Cell(row, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = parameters[3];
+
+            // 5. Кафедра
+            cell = mainTable.Cell(row++, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = parameters[4];
+
+            // 6. Вид документа
+            cell = mainTable.Cell(row++, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = parameters[5];
+            para.Range.Font.Bold = 1;
+
+            // 7. Вид занятия
+            cell = mainTable.Cell(row, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = parameters[6];
+            para.Range.Font.Bold = 1;
+
+            // 8. Тема работы (если есть)
+            if (!string.IsNullOrEmpty(parameters[8]))
             {
-                Word.Paragraph para;
-
-                object oEndOfDoc = "\\endofdoc"; // Конец документа
-
-                // Установка шрифта по умолчанию
-                wordDoc.Content.Font.Name = "Times New Roman";
-                wordDoc.Content.Font.Size = 14;
-
-                // 1. Министерство
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = parameters[0];
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                para.Format.SpaceAfter = 6;
-                para.Range.InsertParagraphAfter();
-
-                // 2. Регалии вуза
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = parameters[1];
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                para.Format.SpaceAfter = 6;
-                para.Range.InsertParagraphAfter();
-
-                // 3. Название вуза
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = parameters[2];
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                para.Format.SpaceAfter = 12;
-                para.Range.InsertParagraphAfter();
-
-                // 4. Институт
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = parameters[3];
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                para.Format.SpaceAfter = 6;
-                para.Range.InsertParagraphAfter();
-
-                // 5. Кафедра
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = parameters[4];
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                para.Format.SpaceAfter = 24;
-                para.Range.InsertParagraphAfter();
-
-                // 6. Вид документа
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = parameters[5];
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                cell = mainTable.Cell(row++, 1);
+                cellRange = cell.Range;
+                para = cellRange.Paragraphs.Add();
+                para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                para.Range.Text = $"Выполнена работа №{parameters[7]} на тему: \"{parameters[8]}\"";
                 para.Range.Font.Bold = 1;
-                para.Format.SpaceAfter = 6;
-                para.Range.InsertParagraphAfter();
-
-                // 7. Вид занятия
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = $"по {parameters[6]}";
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                para.Range.Font.Bold = 1;
-                para.Format.SpaceAfter = 6;
-                para.Range.InsertParagraphAfter();
-
-                // 8. Номер работы
-                if (!string.IsNullOrEmpty(parameters[7]) && !string.IsNullOrEmpty(parameters[8]))
-                {
-                    para = wordDoc.Content.Paragraphs.Add();
-                    para.Range.Text = $"Выполнена работа №{parameters[7]} на тему: \"{parameters[8]}\"";
-                    para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                    para.Range.Font.Bold = 1;
-                    para.Format.SpaceAfter = 24;
-                    para.Range.InsertParagraphAfter();
-                }
-                else if (!string.IsNullOrEmpty(parameters[8]))
-                {
-                    para = wordDoc.Content.Paragraphs.Add();
-                    para.Range.Text = $"на тему: \"{parameters[8]}\"";
-                    para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                    para.Range.Font.Bold = 1;
-                    para.Format.SpaceAfter = 24;
-                    para.Range.InsertParagraphAfter();
-                }
-
-                // 9. Дисциплина
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = $"по дисциплине \"{parameters[9]}\"";
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                para.Format.SpaceAfter = 36;
-                para.Range.InsertParagraphAfter();
-
-                // 10. Тема
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = $"\"{parameters[10]}\"";
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                para.Range.Font.Italic = 1;
-                para.Format.SpaceAfter = 36;
-                para.Range.InsertParagraphAfter();
-
-                // Подпись: Выполнил
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = $"Выполнил: ст. гр. {parameters[11]}";
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
-                para.Format.SpaceAfter = 6;
-                para.Range.InsertParagraphAfter();
-
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = parameters[12];
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
-                para.Format.SpaceAfter = 12;
-                para.Range.InsertParagraphAfter();
-
-                // Подпись: Проверил
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = $"Проверил: {parameters[15]}";
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
-                para.Format.SpaceAfter = 6;
-                para.Range.InsertParagraphAfter();
-
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = parameters[14];
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
-                para.Format.SpaceAfter = 110;
-                para.Range.InsertParagraphAfter();
-
-                // Добавляем отступ
-                wordDoc.Content.InsertParagraphAfter();
-
-                // Город – год
-                para = wordDoc.Content.Paragraphs.Add();
-                para.Range.Text = $"{parameters[16]} – {parameters[17]} г.";
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                para.Format.SpaceAfter = 12;
-                para.Range.InsertParagraphAfter();
-
-                }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при создании документа: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (wordDoc != null) wordDoc.Close();
             }
 
+            // 9. Дисциплина
+            cell = mainTable.Cell(row++, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = $"по дисциплине \"{parameters[9]}\"";
+
+            // 10. Тема отчёта
+            cell = mainTable.Cell(row++, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = $"\"{parameters[10]}\"";
+            para.Range.Font.Italic = 1;
+
+            // 11. Подпись: Выполнил
+            cell = mainTable.Cell(row++, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Range.Text = $"Выполнил: ст. гр. {parameters[11]}";
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+            para.Format.SpaceAfter = 0;
+            cell = mainTable.Cell(row++, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Range.Text = $"{parameters[12]}";
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+
+            // 12. Подпись: Проверил
+            cell = mainTable.Cell(row++, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Range.Text = $"Проверил: {parameters[15]}";
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+            para.Format.SpaceAfter = 0;
+            cell = mainTable.Cell(row, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Range.Text = $"{parameters[14]}";
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+
+
+            // Отступ после подписей
+            cellRange.InsertParagraphAfter();
+
+            // 13. Город 
+            cell = mainTable.Cell(row, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = parameters[16];
+
+            // 14. Год
+            cell = mainTable.Cell(row, 1);
+            cellRange = cell.Range;
+            para = cellRange.Paragraphs.Add();
+            para.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            para.Range.Text = parameters[17] + " г.";
+
+            // Удаляем последнюю пустую строку (автоматически добавляется Word'ом)
+            try
+            {
+                mainTable.Rows.Last.Range.Delete();
+            }
+            catch { }
         }
 
         private void showPreviewInWord(string tempFilePath)
