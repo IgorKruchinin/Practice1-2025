@@ -57,6 +57,12 @@
             this.fldCity = new System.Windows.Forms.TextBox();
             this.fldYear = new System.Windows.Forms.NumericUpDown();
             this.fldWorkNumber = new System.Windows.Forms.NumericUpDown();
+            this.fldInstitution = new System.Windows.Forms.TextBox();
+            this.lblInstitution = new System.Windows.Forms.Label();
+            this.fldGroup = new System.Windows.Forms.TextBox();
+            this.lblGroup = new System.Windows.Forms.Label();
+            this.fldVariant = new System.Windows.Forms.TextBox();
+            this.lblVariant = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fldYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fldWorkNumber)).BeginInit();
             this.SuspendLayout();
@@ -140,7 +146,7 @@
             // lblChackerName
             // 
             this.lblChackerName.AutoSize = true;
-            this.lblChackerName.Location = new System.Drawing.Point(29, 255);
+            this.lblChackerName.Location = new System.Drawing.Point(29, 292);
             this.lblChackerName.Name = "lblChackerName";
             this.lblChackerName.Size = new System.Drawing.Size(135, 16);
             this.lblChackerName.TabIndex = 9;
@@ -149,7 +155,7 @@
             // lblCheckerRegalies
             // 
             this.lblCheckerRegalies.AutoSize = true;
-            this.lblCheckerRegalies.Location = new System.Drawing.Point(0, 298);
+            this.lblCheckerRegalies.Location = new System.Drawing.Point(-1, 323);
             this.lblCheckerRegalies.Name = "lblCheckerRegalies";
             this.lblCheckerRegalies.Size = new System.Drawing.Size(164, 16);
             this.lblCheckerRegalies.TabIndex = 10;
@@ -159,7 +165,7 @@
             // labellblUniversityName
             // 
             this.labellblUniversityName.AutoSize = true;
-            this.labellblUniversityName.Location = new System.Drawing.Point(53, 342);
+            this.labellblUniversityName.Location = new System.Drawing.Point(52, 448);
             this.labellblUniversityName.Name = "labellblUniversityName";
             this.labellblUniversityName.Size = new System.Drawing.Size(111, 16);
             this.labellblUniversityName.TabIndex = 11;
@@ -168,7 +174,7 @@
             // lblDepartament
             // 
             this.lblDepartament.AutoSize = true;
-            this.lblDepartament.Location = new System.Drawing.Point(-1, 411);
+            this.lblDepartament.Location = new System.Drawing.Point(-5, 524);
             this.lblDepartament.Name = "lblDepartament";
             this.lblDepartament.Size = new System.Drawing.Size(171, 16);
             this.lblDepartament.TabIndex = 12;
@@ -178,7 +184,7 @@
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(117, 449);
+            this.lblCity.Location = new System.Drawing.Point(115, 562);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(49, 16);
             this.lblCity.TabIndex = 13;
@@ -187,7 +193,7 @@
             // lblYear
             // 
             this.lblYear.AutoSize = true;
-            this.lblYear.Location = new System.Drawing.Point(136, 490);
+            this.lblYear.Location = new System.Drawing.Point(133, 593);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(33, 16);
             this.lblYear.TabIndex = 14;
@@ -195,7 +201,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(175, 522);
+            this.btnSave.Location = new System.Drawing.Point(170, 645);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(91, 24);
             this.btnSave.TabIndex = 15;
@@ -204,7 +210,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(425, 522);
+            this.btnCreate.Location = new System.Drawing.Point(403, 646);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(92, 23);
             this.btnCreate.TabIndex = 16;
@@ -230,7 +236,7 @@
             // lblUniversityRegalies
             // 
             this.lblUniversityRegalies.AutoSize = true;
-            this.lblUniversityRegalies.Location = new System.Drawing.Point(66, 377);
+            this.lblUniversityRegalies.Location = new System.Drawing.Point(63, 486);
             this.lblUniversityRegalies.Name = "lblUniversityRegalies";
             this.lblUniversityRegalies.Size = new System.Drawing.Size(100, 16);
             this.lblUniversityRegalies.TabIndex = 20;
@@ -239,42 +245,42 @@
             // 
             // fldCheckerName
             // 
-            this.fldCheckerName.Location = new System.Drawing.Point(170, 252);
+            this.fldCheckerName.Location = new System.Drawing.Point(170, 286);
             this.fldCheckerName.Name = "fldCheckerName";
             this.fldCheckerName.Size = new System.Drawing.Size(600, 22);
             this.fldCheckerName.TabIndex = 21;
             // 
             // fldCheckerRegalies
             // 
-            this.fldCheckerRegalies.Location = new System.Drawing.Point(170, 292);
+            this.fldCheckerRegalies.Location = new System.Drawing.Point(169, 323);
             this.fldCheckerRegalies.Name = "fldCheckerRegalies";
             this.fldCheckerRegalies.Size = new System.Drawing.Size(600, 22);
             this.fldCheckerRegalies.TabIndex = 22;
             // 
             // fldUniversityName
             // 
-            this.fldUniversityName.Location = new System.Drawing.Point(170, 336);
+            this.fldUniversityName.Location = new System.Drawing.Point(169, 442);
             this.fldUniversityName.Name = "fldUniversityName";
             this.fldUniversityName.Size = new System.Drawing.Size(600, 22);
             this.fldUniversityName.TabIndex = 23;
             // 
             // fldUniversityRegalies
             // 
-            this.fldUniversityRegalies.Location = new System.Drawing.Point(170, 374);
+            this.fldUniversityRegalies.Location = new System.Drawing.Point(169, 480);
             this.fldUniversityRegalies.Name = "fldUniversityRegalies";
             this.fldUniversityRegalies.Size = new System.Drawing.Size(600, 22);
             this.fldUniversityRegalies.TabIndex = 24;
             // 
             // fldDepartament
             // 
-            this.fldDepartament.Location = new System.Drawing.Point(170, 408);
+            this.fldDepartament.Location = new System.Drawing.Point(169, 518);
             this.fldDepartament.Name = "fldDepartament";
             this.fldDepartament.Size = new System.Drawing.Size(600, 22);
             this.fldDepartament.TabIndex = 25;
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(619, 523);
+            this.btnPreview.Location = new System.Drawing.Point(636, 645);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(134, 23);
             this.btnPreview.TabIndex = 26;
@@ -283,14 +289,14 @@
             // 
             // fldCity
             // 
-            this.fldCity.Location = new System.Drawing.Point(172, 446);
+            this.fldCity.Location = new System.Drawing.Point(170, 556);
             this.fldCity.Name = "fldCity";
             this.fldCity.Size = new System.Drawing.Size(600, 22);
             this.fldCity.TabIndex = 27;
             // 
             // fldYear
             // 
-            this.fldYear.Location = new System.Drawing.Point(175, 490);
+            this.fldYear.Location = new System.Drawing.Point(172, 593);
             this.fldYear.Maximum = new decimal(new int[] {
             2100,
             0,
@@ -309,6 +315,7 @@
             0,
             0,
             0});
+            this.fldYear.ValueChanged += new System.EventHandler(this.fldYear_ValueChanged);
             // 
             // fldWorkNumber
             // 
@@ -332,11 +339,65 @@
             0,
             0});
             // 
+            // fldInstitution
+            // 
+            this.fldInstitution.Location = new System.Drawing.Point(169, 400);
+            this.fldInstitution.Name = "fldInstitution";
+            this.fldInstitution.Size = new System.Drawing.Size(600, 22);
+            this.fldInstitution.TabIndex = 30;
+            // 
+            // lblInstitution
+            // 
+            this.lblInstitution.AutoSize = true;
+            this.lblInstitution.Location = new System.Drawing.Point(92, 406);
+            this.lblInstitution.Name = "lblInstitution";
+            this.lblInstitution.Size = new System.Drawing.Size(72, 16);
+            this.lblInstitution.TabIndex = 31;
+            this.lblInstitution.Text = "Институт:";
+            // 
+            // fldGroup
+            // 
+            this.fldGroup.Location = new System.Drawing.Point(169, 361);
+            this.fldGroup.Name = "fldGroup";
+            this.fldGroup.Size = new System.Drawing.Size(600, 22);
+            this.fldGroup.TabIndex = 32;
+            // 
+            // lblGroup
+            // 
+            this.lblGroup.AutoSize = true;
+            this.lblGroup.Location = new System.Drawing.Point(50, 367);
+            this.lblGroup.Name = "lblGroup";
+            this.lblGroup.Size = new System.Drawing.Size(115, 16);
+            this.lblGroup.TabIndex = 33;
+            this.lblGroup.Text = "Учебная группа:";
+            // 
+            // fldVariant
+            // 
+            this.fldVariant.Location = new System.Drawing.Point(169, 247);
+            this.fldVariant.Name = "fldVariant";
+            this.fldVariant.Size = new System.Drawing.Size(600, 22);
+            this.fldVariant.TabIndex = 34;
+            // 
+            // lblVariant
+            // 
+            this.lblVariant.AutoSize = true;
+            this.lblVariant.Location = new System.Drawing.Point(31, 253);
+            this.lblVariant.Name = "lblVariant";
+            this.lblVariant.Size = new System.Drawing.Size(119, 16);
+            this.lblVariant.TabIndex = 35;
+            this.lblVariant.Text = "Номер варианта:";
+            // 
             // FormWordAutomatisation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 557);
+            this.ClientSize = new System.Drawing.Size(800, 680);
+            this.Controls.Add(this.lblVariant);
+            this.Controls.Add(this.fldVariant);
+            this.Controls.Add(this.lblGroup);
+            this.Controls.Add(this.fldGroup);
+            this.Controls.Add(this.lblInstitution);
+            this.Controls.Add(this.fldInstitution);
             this.Controls.Add(this.fldWorkNumber);
             this.Controls.Add(this.fldYear);
             this.Controls.Add(this.fldCity);
@@ -407,6 +468,12 @@
         private System.Windows.Forms.TextBox fldCity;
         private System.Windows.Forms.NumericUpDown fldYear;
         private System.Windows.Forms.NumericUpDown fldWorkNumber;
+        private System.Windows.Forms.TextBox fldInstitution;
+        private System.Windows.Forms.Label lblInstitution;
+        private System.Windows.Forms.TextBox fldGroup;
+        private System.Windows.Forms.Label lblGroup;
+        private System.Windows.Forms.TextBox fldVariant;
+        private System.Windows.Forms.Label lblVariant;
     }
 }
 
