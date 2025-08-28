@@ -180,18 +180,12 @@ namespace Practice1_2025
             MessageBox.Show("Настройки сохранены!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void createWordDocument(string filename)
+        private void fillTitleDocument(Word.Document wordDoc, string[] parameters) 
         {
             updateParametersFromControls();
 
-            Word.Application wordApp = null;
-            Word.Document wordDoc = null;
-
             try
             {
-                wordApp = new Word.Application();
-                wordDoc = wordApp.Documents.Add();
-
                 Word.Paragraph para;
 
                 object oEndOfDoc = "\\endofdoc"; // Конец документа
@@ -322,19 +316,11 @@ namespace Practice1_2025
                 para.Format.SpaceAfter = 12;
                 para.Range.InsertParagraphAfter();
 
-                // Сохраняем документ
-                string docPath = Path.Combine(Application.StartupPath, filename);
-                wordDoc.SaveAs2(docPath);
-                wordDoc.Close();
-                wordApp.Quit();
-
-                MessageBox.Show($"Документ сохранён: {docPath}", "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                }
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка при создании документа: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (wordDoc != null) wordDoc.Close();
-                if (wordApp != null) wordApp.Quit();
             }
 
         }
@@ -366,13 +352,99 @@ namespace Practice1_2025
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            createWordDocument("titlePage.docx");
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Title = "Сохранить титульный лист";
+                sfd.Filter = "Документы Word|*.docx|Все файлы|*.*";
+                sfd.DefaultExt = "docx";
+                sfd.FileName = "TitlePage.docx"; // предложенное имя
+
+                if (sfd.ShowDialog() != DialogResult.OK)
+                    return; // пользователь нажал "Отмена"
+
+                string savePath = sfd.FileName;
+
+                // Проверим, не занят ли файл
+                if (File.Exists(savePath))
+                {
+                    try
+                    {
+                        File.Delete(savePath); // пытаемся удалить старый (если не открыт)
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Файл используется другим приложением.", "Ошибка",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                // === Создаём документ Word ===
+                Word.Application wordApp = null;
+                Word.Document wordDoc = null;
+
+                try
+                {
+                    wordApp = new Word.Application();
+                    wordDoc = wordApp.Documents.Add();
+
+                    // Заполняем титульный лист (уже есть)
+                    fillTitleDocument(wordDoc, parameters);
+
+                    // Сохраняем в выбранный путь
+                    wordDoc.SaveAs2(savePath);
+                    wordDoc.Close();
+                    wordApp.Quit();
+
+                    MessageBox.Show($"Документ успешно сохранён:\n{savePath}",
+                        "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при создании документа: " + ex.Message,
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    wordDoc?.Close();
+                    wordApp?.Quit();
+                }
+            }
         }
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            createWordDocument("preview.docx");
-            showPreviewInWord("preview.docx");
+            Word.Application wordApp = null;
+            Word.Document wordDoc = null;
+            string tempFilePath = Path.Combine(Path.GetTempPath(), "Preview_TitlePage.docx");
+
+            try
+            {
+                wordApp = new Word.Application();
+                wordDoc = wordApp.Documents.Add();
+
+                // Заполняем титульный лист (тот же код!)
+                fillTitleDocument(wordDoc, parameters);
+
+                // Сохраняем временный файл
+                wordDoc.SaveAs2(tempFilePath);
+                wordDoc.Close();
+                wordApp.Quit();
+
+                // Открываем в Word
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                {
+                    FileName = tempFilePath,
+                    UseShellExecute = true
+                });
+
+                MessageBox.Show($"Документ открыт в Word.\nФайл: {tempFilePath}",
+                    "Предварительный просмотр", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при создании или открытии документа: " + ex.Message,
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                wordDoc?.Close();
+                wordApp?.Quit();
+            }
         }
 
         private void FormWordAutomatisation_Load(object sender, EventArgs e)
