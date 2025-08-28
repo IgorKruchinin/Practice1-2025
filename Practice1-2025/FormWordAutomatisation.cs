@@ -202,51 +202,51 @@ namespace Practice1_2025
 
                 // 1. Министерство
                 para = wordDoc.Content.Paragraphs.Add();
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Text = parameters[0];
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Format.SpaceAfter = 6;
                 para.Range.InsertParagraphAfter();
 
                 // 2. Регалии вуза
                 para = wordDoc.Content.Paragraphs.Add();
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Text = parameters[1];
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Format.SpaceAfter = 6;
                 para.Range.InsertParagraphAfter();
 
                 // 3. Название вуза
                 para = wordDoc.Content.Paragraphs.Add();
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Text = parameters[2];
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Format.SpaceAfter = 12;
                 para.Range.InsertParagraphAfter();
 
                 // 4. Институт
                 para = wordDoc.Content.Paragraphs.Add();
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Text = parameters[3];
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Format.SpaceAfter = 6;
                 para.Range.InsertParagraphAfter();
 
                 // 5. Кафедра
                 para = wordDoc.Content.Paragraphs.Add();
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Text = parameters[4];
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Format.SpaceAfter = 24;
                 para.Range.InsertParagraphAfter();
 
                 // 6. Вид документа
                 para = wordDoc.Content.Paragraphs.Add();
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Text = parameters[5];
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Font.Bold = 1;
                 para.Format.SpaceAfter = 6;
                 para.Range.InsertParagraphAfter();
 
                 // 7. Вид занятия
                 para = wordDoc.Content.Paragraphs.Add();
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Text = $"по {parameters[6]}";
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Font.Bold = 1;
                 para.Format.SpaceAfter = 6;
                 para.Range.InsertParagraphAfter();
@@ -255,8 +255,8 @@ namespace Practice1_2025
                 if (!string.IsNullOrEmpty(parameters[7]) && !string.IsNullOrEmpty(parameters[8]))
                 {
                     para = wordDoc.Content.Paragraphs.Add();
-                    para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                     para.Range.Text = $"Выполнена работа №{parameters[7]} на тему: \"{parameters[8]}\"";
+                    para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                     para.Range.Font.Bold = 1;
                     para.Format.SpaceAfter = 24;
                     para.Range.InsertParagraphAfter();
@@ -264,8 +264,8 @@ namespace Practice1_2025
                 else if (!string.IsNullOrEmpty(parameters[8]))
                 {
                     para = wordDoc.Content.Paragraphs.Add();
-                    para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                     para.Range.Text = $"на тему: \"{parameters[8]}\"";
+                    para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                     para.Range.Font.Bold = 1;
                     para.Format.SpaceAfter = 24;
                     para.Range.InsertParagraphAfter();
@@ -273,40 +273,52 @@ namespace Practice1_2025
 
                 // 9. Дисциплина
                 para = wordDoc.Content.Paragraphs.Add();
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Text = $"по дисциплине \"{parameters[9]}\"";
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Format.SpaceAfter = 36;
                 para.Range.InsertParagraphAfter();
 
                 // 10. Тема
                 para = wordDoc.Content.Paragraphs.Add();
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Text = $"\"{parameters[10]}\"";
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Range.Font.Italic = 1;
                 para.Format.SpaceAfter = 36;
                 para.Range.InsertParagraphAfter();
 
-                // 11. Таблица для подписей (без границ)
-                Word.Table signatureTable = wordDoc.Content.Tables.Add(wordDoc.Bookmarks.get_Item(ref oEndOfDoc).Range, 2, 2);
-                signatureTable.Columns[1].SetWidth(200, Word.WdRulerStyle.wdAdjustNone);
-                signatureTable.Columns[2].SetWidth(200, Word.WdRulerStyle.wdAdjustNone);
-                signatureTable.Borders.Enable = 0; // Нет границ
+                // Подпись: Выполнил
+                para = wordDoc.Content.Paragraphs.Add();
+                para.Range.Text = $"Выполнил: ст. гр. {parameters[11]}";
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+                para.Format.SpaceAfter = 6;
+                para.Range.InsertParagraphAfter();
 
-                // Выполнил
-                signatureTable.Cell(1, 1).Range.Text = "Выполнил: ст. гр. " + parameters[11];
-                signatureTable.Cell(1, 2).Range.Text = parameters[12];
+                para = wordDoc.Content.Paragraphs.Add();
+                para.Range.Text = parameters[12];
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+                para.Format.SpaceAfter = 12;
+                para.Range.InsertParagraphAfter();
 
-                // Проверил
-                signatureTable.Cell(2, 1).Range.Text = "Проверил: " + parameters[15];
-                signatureTable.Cell(2, 2).Range.Text = parameters[14];
+                // Подпись: Проверил
+                para = wordDoc.Content.Paragraphs.Add();
+                para.Range.Text = $"Проверил: {parameters[15]}";
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+                para.Format.SpaceAfter = 6;
+                para.Range.InsertParagraphAfter();
+
+                para = wordDoc.Content.Paragraphs.Add();
+                para.Range.Text = parameters[14];
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+                para.Format.SpaceAfter = 110;
+                para.Range.InsertParagraphAfter();
 
                 // Добавляем отступ
                 wordDoc.Content.InsertParagraphAfter();
 
                 // Город – год
                 para = wordDoc.Content.Paragraphs.Add();
-                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
                 para.Range.Text = $"{parameters[16]} – {parameters[17]} г.";
+                para.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 para.Format.SpaceAfter = 12;
                 para.Range.InsertParagraphAfter();
 
